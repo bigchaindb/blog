@@ -1,0 +1,17 @@
+.tag {
+    background: darken($gray-dark, 10%);
+    display: inline-block;
+    box-shadow: none;
+    background: rgba($brand-main-green, .3);
+    color: #fff;
+    padding-left: .35rem;
+    padding-right: .35rem;
+    border-radius: $border-radius;
+
+    &:before {
+        content: "#";
+        opacity: .5;
+        display: inline-block;
+        margin-right: .1rem;
+    }
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {{!-- Document Settings --}}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{!-- Page Meta --}}
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}" />
+
+    {{!-- Mobile Meta --}}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cleartype" content="on">
+
+    {{!-- Styles'n'Scripts --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/bigchaindb-blog.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}" />
+
+    <!-- Touch Icons  -->
+    <link rel="apple-touch-icon-precomposed" href="{{asset "img/apple-touch-icon-precomposed-180x180.png"}}" sizes="180x180">
+    <link rel="icon" type="image/png" href="{{asset "img/favicon-32x32.png"}}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{asset "img/favicon-192x192.png"}}" sizes="192x192">
+    <link rel="icon" type="image/png" href="{{asset "img/favicon-96x96.png"}}" sizes="96x96">
+    <link rel="shortcut icon" href="{{asset "img/favicon.ico"}}">
+    <link rel="mask-icon" href="{{asset "img/favicon-glyph.svg"}}" color="#074354">
+
+    <!-- Win 8/8.1  -->
+    <meta name="msapplication-TileImage" content="{{asset "img/TileImage-144x144.png"}}"/>
+    <meta name="msapplication-TileColor" content="#074354"/>
+
+    <!-- Android Lollipop theme color -->
+    <meta name="theme-color" content="#074354">
+
+    {{!-- Ghost outputs important style and meta data with this tag --}}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+    {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+    {{{body}}}
+
+    {{> footer}}
+
+    {{!-- Ghost outputs important scripts and data with this tag --}}
+    {{ghost_foot}}
+
+    {{!-- The main JavaScript file --}}
+    <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
+
+</body>
+</html>

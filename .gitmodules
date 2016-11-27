@@ -1,0 +1,3 @@
+[submodule "bigchain-website"]
+	path = bigchain-website
+	url = git@github.com:ascribe/bigchain-website.git

@@ -1,0 +1,51 @@
+.read-next {
+    margin-top: ($spacer * 4);
+}
+
+.read-next-story {
+    @extend .section, .transition;
+    display: block;
+    text-align: center;
+    box-shadow: none;
+
+    &,
+    &:hover,
+    &:focus {
+        @extend .background--photo;
+    }
+
+    &:hover,
+    &:focus {
+        background-size: 110%;
+
+        &:before {
+
+        }
+    }
+
+    h2 {
+        color: #fff;
+    }
+
+    p {
+        margin: 0;
+        color: rgba(255,255,255,0.8);
+    }
+}
+
+.read-next-story .post:before {
+    content: "Read This Next";
+    @extend .btn, .btn-link;
+}
+.read-next-story.prev .post:before {
+    content: "You Might Enjoy";
+}
+
+// Special styles for posts with no cover images
+.read-next-story.no-cover {
+    border-top: 1px solid $gray;
+
+    &:before {
+        display: none;
+    }
+}

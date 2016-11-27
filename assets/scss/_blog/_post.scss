@@ -1,0 +1,107 @@
+.post {
+    @extend .section;
+    position: relative;
+    border-bottom: 1px solid $gray;
+    word-wrap: break-word;
+
+    .post-template &,
+    .page-template & {
+        padding-top: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+}
+
+.post-header {
+    margin-bottom: $spacer;
+}
+
+.post-title {
+    margin: 0;
+
+    a {
+        box-shadow: none;
+        color: $brand-main-green;
+    }
+}
+
+.post-teaser {
+    @extend .color-overlay;
+    margin-bottom: $spacer;
+    display: block;
+    box-shadow: none;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+        @extend .transition;
+        display: block;
+        position: relative;
+        z-index: -1;
+    }
+
+    &:hover,
+    &:focus {
+        background: none;
+        img {
+            transform: scale(1.03);
+        }
+    }
+}
+
+.post-excerpt p {
+    margin: 0;
+}
+
+.post-meta {
+    @extend .small;
+    margin-top: $spacer * 2;
+    color: $gray-light;
+
+    div {
+        display: inline-block;
+    }
+
+    .tags {
+        margin-left: $spacer;
+    }
+}
+
+.post-date {
+    display: inline-block;
+    white-space: nowrap;
+    float: right;
+}
+
+.post-content {
+    .post-template &,
+    .page-template & {
+        margin-top: ($spacer * 4);
+    }
+}
+
+/* Keep images centered, and allow images wider than the main
+   text column to break out. */
+.post-content img {
+    display: block;
+    max-width: 126%;
+    height: auto;
+    padding: 0.6em 0;
+    /* Centers an image by (1) pushing its left edge to the
+       center of its container and (2) shifting the entire image
+       in the opposite direction by half its own width.
+       Works for images that are larger than their containers. */
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%); /* for Safari and iOS */
+    transform: translateX(-50%);
+}
+
+
+//
+// The author credit area after the post
+//
+.post-footer {
+    position: relative;
+    margin-top: ($spacer * 8);
+}

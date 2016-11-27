@@ -1,0 +1,27 @@
+{
+  "name": "bigchaindb-blog",
+  "description": "Ghost theme for BigchainDB's blog.",
+  "demo": "https://blog.bigchaindb.com",
+  "version": "1.0.0",
+  "engines": {
+    "ghost": ">=0.9.0 <1.0.0"
+  },
+  "license": "",
+  "author": {
+    "name": "Matthias Kretschmann",
+    "email": "m@kretschmann.io",
+    "url": "https://matthiaskretschmann.com"
+  },
+  "keywords": [
+    "ghost",
+    "theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bigchaindb/bigchaindb-blog.git"
+  },
+  "bugs": "https://github.com/bigchaindb/bigchaindb-blog/issues",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}

@@ -1,0 +1,39 @@
+button {
+    @extend .btn;
+}
+
+textarea, select, input {
+    @extend .form-control;
+}
+
+.row:not(.row--wide):not(.row--narrow) {
+    max-width: 40em;
+}
+
+img {
+    @extend .img--responsive;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background: $gray;
+    margin: ($spacer * 4) auto;
+    width: 30%;
+}
+
+.header {
+    height: 65vh;
+    min-height: 320px;
+
+    > .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 81%;
+    }
+}
+
+.header__title {
+    padding: 0;
+}
