@@ -22,6 +22,11 @@ hr {
     width: 30%;
 }
 
+blockquote {
+    color: $gray-light;
+    border-left-color: $gray-light;
+}
+
 .header {
     height: 65vh;
     min-height: 320px;
@@ -36,4 +41,25 @@ hr {
 
 .header__title {
     padding: 0;
+}
+
+.menu--main {
+    .menu__logo {
+        display: flex;
+        align-items: center;
+
+        svg {
+            margin: 0;
+            display: inline-block;
+            border-right: 1px solid $gray-lightest;
+            padding-right: $spacer / 2;
+            margin-right: $spacer / 2.5;
+        }
+    }
+
+    .menu__logo__blog {
+        display: inline-block;
+        font-size: 1.5rem;
+            margin-bottom: -.5rem;
+    }
 }

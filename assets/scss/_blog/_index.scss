@@ -6,7 +6,8 @@
     -webkit-animation-delay: 0.2s;
     animation-delay: 0.2s;
 }
-.header__description {
+.header__description,
+.author--profile .author__info {
     -webkit-animation: fade-in-down 0.9s;
     animation: fade-in-down 0.9s both;
     -webkit-animation-delay: 0.1s;

@@ -14,26 +14,52 @@
         </div>
     </header>
 
-    <section class="author-profile inner">
-        {{#if image}}
-        <figure class="author-image">
-            <div class="img" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></div>
-        </figure>
-        {{/if}}
-        <h1 class="author-title">{{name}}</h1>
-        {{#if bio}}
-            <h2 class="author-bio">{{bio}}</h2>
-        {{/if}}
-        <div class="author-meta">
-            {{#if location}}<span class="author-location icon-location">{{location}}</span>{{/if}}
-            {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span>{{/if}}
-            <span class="author-stats"><i class="icon-stats"></i> {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}</span>
+    <section class="author author--profile">
+        <div class="row">
+            {{#if image}}
+            <figure class="author__image">
+                <a class="img" href="{{url}}" style="background-image: url({{image}})"></a>
+            </figure>
+            {{/if}}
+
+            <section class="author__info">
+                <h2 class="author__info__name">{{name}}</h2>
+                {{#if bio}}
+                    <p class="author__bio">{{bio}}</p>
+                {{/if}}
+                <div class="author__info__meta">
+                    {{#if location}}<span class="author-location icon-location">{{location}}</span> &middot; {{/if}}
+                    {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span> &middot; {{/if}}
+
+                    {{#if twitter}}
+                        <a class="social-link js-social-link" href="https://twitter.com/{{twitter}}" title="Twitter">
+                            <svg class="icon icon--social icon--twitter" aria-labelledby="title">
+                                <title>Twitter</title>
+                                <use xlink:href="/assets/img/sprite.svg#twitter"></use>
+                            </svg>
+                        </a>
+                        &middot;
+                    {{/if}}
+
+                    {{#if facebook}}
+                        <a class="social-link js-social-link" href="https://facebook.com/{{facebook}}" title="Facebook">
+                            <svg class="icon icon--social icon--facebook" aria-labelledby="title">
+                                <title>Facebook</title>
+                                <use xlink:href="/assets/img/sprite.svg#facebook"></use>
+                            </svg>
+                        </a>
+                        &middot;
+                    {{/if}}
+
+                    <span class="author-stats"><i class="icon-stats"></i> {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}</span>
+                </div>
+            </section>
         </div>
     </section>
 {{/author}}
 
 {{!-- The main content area on the homepage --}}
-<main class="content row" role="main">
+<main id="content" class="content row" role="main">
 
     {{!-- The tag below includes the post loop - partials/loop.hbs --}}
     {{> "loop"}}

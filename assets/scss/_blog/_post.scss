@@ -17,11 +17,17 @@
 }
 
 .post-title {
+    @extend .h1;
     margin: 0;
 
     a {
         box-shadow: none;
         color: $brand-main-green;
+
+        &:hover,
+        &:focus {
+            color: $body-bg;
+        }
     }
 }
 
@@ -49,28 +55,30 @@
     }
 }
 
-.post-excerpt p {
+.post-excerpt p:last-child {
     margin: 0;
 }
 
 .post-meta {
-    @extend .small;
-    margin-top: $spacer * 2;
+    margin-top: $spacer * 3;
     color: $gray-light;
+    text-align: center;
 
-    div {
-        display: inline-block;
-    }
-
-    .tags {
-        margin-left: $spacer;
+    @media ($screen-sm) {
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
     }
 }
 
+.post-tags,
+.post-date,
+.post-meta .author {
+    @extend .small;
+}
+
 .post-date {
-    display: inline-block;
-    white-space: nowrap;
-    float: right;
+
 }
 
 .post-content {
@@ -103,5 +111,5 @@
 //
 .post-footer {
     position: relative;
-    margin-top: ($spacer * 8);
+    margin-top: $spacer * 4;
 }

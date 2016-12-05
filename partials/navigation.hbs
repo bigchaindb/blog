@@ -2,16 +2,17 @@
     <div class="row row--wide">
 
         <div class="grid grid--full grid-medium--columns grid--center">
-            <div class="grid__col grid__col--1">
+            <div class="grid__col grid__col--2">
                 <a class="menu__logo" href="{{@blog.url}}">
                     <svg class="logo logo--sm logo--white--green" aria-labelledby="title">
                         <title>BigchainDB</title>
                         <use xlink:href="{{asset "img/sprite.svg"}}#logo"></use>
                     </svg>
+                    <span class="menu__logo__blog">Blog</span>
                 </a>
             </div>
 
-            <div class="grid__col grid__col--5">
+            <div class="grid__col grid__col--4">
 
                 <div class="menu-overflow">
                     {{#foreach navigation}}
