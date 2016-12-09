@@ -1,5 +1,5 @@
 {
-  "name": "bigchaindb-blog",
+  "name": "blog",
   "description": "Ghost theme for BigchainDB's blog.",
   "demo": "https://blog.bigchaindb.com",
   "version": "1.0.0",
@@ -18,9 +18,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bigchaindb/bigchaindb-blog.git"
+    "url": "https://github.com/bigchaindb/blog.git"
   },
-  "bugs": "https://github.com/bigchaindb/bigchaindb-blog/issues",
+  "bugs": "https://github.com/bigchaindb/blog/issues",
   "devDependencies": {
     "gulp": "^3.9.1"
   }
