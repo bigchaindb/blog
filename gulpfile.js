@@ -17,6 +17,10 @@ var onError = function(error) {
     this.emit('end');
 }
 
+// 'development' is just default, production overrides are triggered
+// by adding the production flag to the gulp command e.g. `gulp build --production`
+var isProduction = ($.util.env.production === true ? true : false);
+
 
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // Terminal Banner
@@ -52,18 +56,37 @@ var BANNER = [
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // paths
-var SRC      = 'assets/',
-    DIST     = 'assets/';
+var SRC      = 'src/',
+    DIST     = 'dist/bigchaindb-blog/';
+
+// Port to use for the development server
+var PORT = 1337,
+    GHOSTURL = 'localhost:2368';
 
 // Browsers to target when prefixing CSS
 var COMPATIBILITY = ['Chrome >= 30', 'Safari >= 6.1', 'Firefox >= 35', 'Opera >= 32', 'iOS >= 8', 'Android >= 4', 'ie >= 10'];
 
 
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// Tasks
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+//
+// Delete build artifacts
+//
+gulp.task('clean', function(done) {
+    return del([
+        DIST + '**/*',
+        DIST + '.*' // delete all hidden files
+    ], done)
+});
+
+
 //
 // Styles
 //
-gulp.task('css', function() {
-    return gulp.src(SRC + 'scss/bigchaindb-blog.scss')
+gulp.task('css', ['clean'], function() {
+    return gulp.src(SRC + 'assets/scss/bigchaindb-blog.scss')
         .pipe($.sourcemaps.init())
         .pipe($.sass().on('error', $.sass.logError))
         .pipe($.autoprefixer({ browsers: COMPATIBILITY }))
@@ -71,22 +94,84 @@ gulp.task('css', function() {
         .pipe($.if(!isProduction, $.sourcemaps.write()))
         .pipe($.if(isProduction, $.header(BANNER, { pkg: pkg })))
         .pipe($.rename({ suffix: '.min' }))
-        .pipe(gulp.dest(DIST + 'css/'))
+        .pipe(gulp.dest(DIST + 'assets/css/'))
+        .pipe(browser.stream())
 });
 
 
 //
 // JavaScript
 //
-gulp.task('js', function() {
-    return gulp.src(SRC + 'js/bigchaindb-blog.js')
+gulp.task('js', ['clean'], function() {
+    return gulp.src(SRC + 'assets/js/bigchaindb-blog.js')
     .pipe($.sourcemaps.init())
     .pipe($.include())
     .pipe($.if(isProduction, $.uglify())).on('error', onError)
     .pipe($.if(!isProduction, $.sourcemaps.write()))
     .pipe($.if(isProduction, $.header(BANNER, { pkg: pkg })))
     .pipe($.rename({suffix: '.min'}))
-    .pipe(gulp.dest(DIST + 'js/'));
+    .pipe(gulp.dest(DIST + 'assets/js/'))
+});
+
+
+//
+// Copy Images
+//
+gulp.task('img', ['clean'], function() {
+    return gulp.src(SRC + 'assets/img/**/*')
+        .pipe($.if(isProduction, $.imagemin({
+            optimizationLevel: 3, // png
+            progressive: true, // jpg
+            interlaced: true, // gif
+            multipass: true, // svg
+            svgoPlugins: [{ removeViewBox: false }]
+        })))
+        .pipe(gulp.dest(DIST + 'assets/img/'))
+});
+
+
+//
+// Copy all the rest
+//
+gulp.task('copy', ['clean'], function() {
+
+    gulp.src([
+      SRC + '*.hbs',
+      './README.md',
+      './package.json'
+    ])
+    .pipe(gulp.dest(DIST))
+
+    gulp.src(SRC + 'partials/*.hbs')
+        .pipe(gulp.dest(DIST + 'partials/'))
+
+    gulp.src(SRC + 'assets/fonts/**/*')
+        .pipe(gulp.dest(DIST + 'assets/fonts/'))
+});
+
+
+//
+// Create zip package for upload
+//
+gulp.task('zip', ['clean', 'copy', 'css', 'js', 'img'], function() {
+    if (isProduction) {
+        return gulp.src(DIST + '/*')
+            .pipe($.zip('bigchaindb-blog.zip'))
+            .pipe(gulp.dest('dist'))
+    }
+});
+
+
+
+//
+// Dev Server
+//
+gulp.task('server', ['build'], function() {
+    browser.init({
+        proxy: GHOSTURL,
+        port: PORT,
+        reloadDebounce: 2000
+    });
 });
 
 
@@ -98,7 +183,15 @@ gulp.task('js', function() {
 //
 // Build site, run server, and watch for file changes
 //
-gulp.task('default', function() {
-    gulp.watch([SRC + 'scss/**/*.scss'], ['css']);
-    gulp.watch([SRC + 'js/**/*.js'], ['js']);
+gulp.task('default', ['build', 'server'], function() {
+    gulp.watch([SRC + '**/*'], ['build', browser.reload])
 });
+
+
+//
+// Full build
+//
+// `gulp build` is the development build
+// `gulp build --production` is the production build
+//
+gulp.task('build', ['clean', 'copy', 'css', 'js', 'img', 'zip'])
