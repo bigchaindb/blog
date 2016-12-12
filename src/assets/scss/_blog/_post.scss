@@ -101,7 +101,6 @@
        Works for images that are larger than their containers. */
     position: relative;
     left: 50%;
-    -webkit-transform: translateX(-50%); /* for Safari and iOS */
     transform: translateX(-50%);
 }
 

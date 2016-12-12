@@ -35,12 +35,18 @@ blockquote {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
         height: 81%;
     }
 }
 
 .header__title {
     padding: 0;
+}
+
+.header__description {
+    @extend .h3;
+    margin-top: $spacer;
 }
 
 .menu--main {
