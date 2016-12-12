@@ -155,7 +155,7 @@ gulp.task('copy', ['clean'], function() {
 //
 gulp.task('zip', ['clean', 'copy', 'css', 'js', 'img'], function() {
     if (isProduction) {
-        return gulp.src(DIST + '/*')
+        return gulp.src(DIST + '/**/*')
             .pipe($.zip('bigchaindb-blog.zip'))
             .pipe(gulp.dest('dist'))
     }
