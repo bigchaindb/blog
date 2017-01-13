@@ -3,45 +3,38 @@
     {{pagination}}
 </div>
 
-{{!-- This is the post loop - each post will be output using this markup --}}
-{{#foreach posts}}
-<article class="{{post_class}}">
-    <header class="post-header">
-        <h2 class="post-title"><a href="{{url}}">{{title}}</a></h2>
-    </header>
+<div class="grid grid--full grid-small--half grid-medium--third grid--gutters">
 
-    <a class="post-teaser" href="{{url}}">
-        <img src="{{image}}" >
-    </a>
+    {{#foreach posts}}
+    <div class="grid__col">
+        <article class="{{post_class}} post--card">
+            <a class="post--card__link" href="{{url}}">
 
-    <section class="post-excerpt">
-        <p>{{excerpt words="70"}}&hellip;</p>
-        <p><a class="read-more btn btn-sm btn-secondary" href="{{url}}">Read more &#8594;</a></p>
-    </section>
+                <figure class="post-teaser {{#if image}}" style="background-image: url({{image}}){{else}}no-teaser{{/if}}"></figure>
 
-    <footer class="post-meta">
-        <section class="author">
-            {{#if author.image}}
-            <figure class="author__image author__image--small">
-                <span class="img" style="background-image: url({{author.image}})"></span>
-            </figure>
-            {{/if}}
+                <header class="post-header">
+                    <h2 class="post-title">{{title}}</h2>
+                </header>
 
-            {{author.name}}
-        </section>
+                <footer class="post-meta">
+                    <section class="author">
+                        {{#if author.image}}
+                        <figure class="author__image author__image--small">
+                            <span class="img" style="background-image: url({{author.image}})"></span>
+                        </figure>
+                        {{/if}}
 
-        {{#if tags}}
-            <div class="post-tags">
-                {{#foreach tags}}
-                    <a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{slug}}</a>
-                {{/foreach}}
-            </div>
-        {{/if}}
+                        {{author.name}}
+                    </section>
 
-        <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}" title="{{date format="DD MMMM YYYY"}}">{{date published_at timeago="true"}}</time>
-    </footer>
-</article>
-{{/foreach}}
+                    <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}" title="{{date format="DD MMMM YYYY"}}">{{date published_at timeago="true"}}</time>
+                </footer>
+            </a>
+        </article>
+    </div>
+    {{/foreach}}
+
+</div>
 
 {{!-- Previous/next page links - displayed on every page --}}
 {{pagination}}

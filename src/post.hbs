@@ -7,13 +7,13 @@
 {{#post}}
 
 <main class="content" role="main">
-    <article class="{{post_class}}">
+    <article class="{{post_class}} post--single">
 
-        <header class="header post-header {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" role="banner">
+        <header class="header post-header {{#if image}}" style="background-image: url({{image}}){{else}}no-teaser{{/if}}" role="banner">
 
             {{navigation}}
 
-            <div class="row">
+            <div class="row row--wide">
                 <h1 class="header__title post-title">{{title}}</h1>
             </div>
         </header>

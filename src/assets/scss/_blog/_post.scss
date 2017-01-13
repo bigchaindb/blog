@@ -1,4 +1,38 @@
 .post {
+
+}
+
+.post--card {
+
+    .post-title {
+        @extend .h3;
+        margin: 0;
+    }
+
+    .post-teaser {
+        background-position: 50% 50%;
+        background-size: cover;
+        height: 170px;
+    }
+
+    .post-meta {
+        margin-top: $spacer * 2;
+    }
+}
+
+.post--card__link {
+    padding: $spacer;
+    border-radius: $border-radius;
+    display: block;
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+        background: $gray-darker
+    }
+}
+
+.post--single {
     @extend .section;
     position: relative;
     border-bottom: 1px solid $gray;
@@ -10,25 +44,24 @@
         padding-bottom: 0;
         border-bottom: none;
     }
+
+    .post-title {
+        font-size: $font-size-h1 * 1.2;
+    }
 }
 
 .post-header {
     margin-bottom: $spacer;
+
+    &.no-teaser {
+        background-image: url('../img/wrigley-with-stage.svg');
+        background-size: 60%;
+        background-position: right bottom;
+    }
 }
 
 .post-title {
-    @extend .h1;
     margin: 0;
-
-    a {
-        box-shadow: none;
-        color: $brand-main-green;
-
-        &:hover,
-        &:focus {
-            color: $body-bg;
-        }
-    }
 }
 
 .post-teaser {
@@ -39,18 +72,16 @@
     overflow: hidden;
 
     img {
-        @extend .transition;
         display: block;
         position: relative;
         z-index: -1;
     }
 
-    &:hover,
-    &:focus {
-        background: none;
-        img {
-            transform: scale(1.03);
-        }
+    &.no-teaser {
+        background-image: url('../img/wrigley-with-stage.svg');
+        background-size: 90%;
+        background-position: right bottom;
+        background-repeat: no-repeat;
     }
 }
 
