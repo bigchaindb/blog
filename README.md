@@ -2,6 +2,8 @@
 
 > Ghost theme for BigchainDB's blog
 
+***Deprecated. For all your BigchainDB blogging needs go to [blog.bigchaindb.com](https://blog.bigchaindb.com).***
+
 ## Ghost in your shell
 
 ### Install Node.js
